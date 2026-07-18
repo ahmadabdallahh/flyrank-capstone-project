@@ -2,11 +2,24 @@
 
 A front-end development capstone project built with modern web technologies and AI-assisted development workflows.
 
+## Features
+
+- Modern responsive web interface
+- AI-assisted development workflow using opencode , antigravity cli
+- Component-based architecture
+- Accessibility-first approach
+
 ## Tech Stack
 
-- HTML5, CSS3, JavaScript
-- Modern front-end frameworks (to be determined)
-- Claude Code for AI-assisted development
+- Modern front-end frameworks (Next.js + React.js)
+- Claude Code & Opencode for AI-assisted development
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) v18+ (LTS recommended)
+- [Git](https://git-scm.com/)
+- A code editor (VS Code recommended)
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) or [Cursor](https://cursor.sh/) IDE
 
 ## Getting Started
 
