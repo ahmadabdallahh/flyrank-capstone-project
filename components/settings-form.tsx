@@ -9,6 +9,9 @@ interface SettingsFormProps {
   onSubmit: (data: SettingsFormData) => void;
 }
 
+const INPUT_CLASS =
+  "mt-1 block w-full rounded-xl border border-hairline2 bg-surface2 px-4 py-2.5 text-sm text-ink shadow-sm transition-colors focus:border-accent focus:outline-none";
+
 export function SettingsForm({ initialData, onSubmit }: SettingsFormProps) {
   const {
     register,
@@ -25,12 +28,9 @@ export function SettingsForm({ initialData, onSubmit }: SettingsFormProps) {
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
-      <div>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
-        >
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className="grid gap-6">
+      <div className="grid gap-2">
+        <label htmlFor="name" className="text-sm font-medium text-ink">
           Name
         </label>
         <input
@@ -39,20 +39,17 @@ export function SettingsForm({ initialData, onSubmit }: SettingsFormProps) {
           {...register("name")}
           aria-describedby={errors.name ? "name-error" : undefined}
           aria-invalid={errors.name ? "true" : "false"}
-          className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100"
+          className={INPUT_CLASS}
         />
         {errors.name && (
-          <p id="name-error" role="alert" className="mt-1 text-sm text-red-600">
+          <p id="name-error" role="alert" className="text-sm text-danger">
             {errors.name.message}
           </p>
         )}
       </div>
 
-      <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
-        >
+      <div className="grid gap-2">
+        <label htmlFor="email" className="text-sm font-medium text-ink">
           Email
         </label>
         <input
@@ -61,20 +58,17 @@ export function SettingsForm({ initialData, onSubmit }: SettingsFormProps) {
           {...register("email")}
           aria-describedby={errors.email ? "email-error" : undefined}
           aria-invalid={errors.email ? "true" : "false"}
-          className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100"
+          className={INPUT_CLASS}
         />
         {errors.email && (
-          <p id="email-error" role="alert" className="mt-1 text-sm text-red-600">
+          <p id="email-error" role="alert" className="text-sm text-danger">
             {errors.email.message}
           </p>
         )}
       </div>
 
-      <div>
-        <label
-          htmlFor="theme"
-          className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
-        >
+      <div className="grid gap-2">
+        <label htmlFor="theme" className="text-sm font-medium text-ink">
           Theme
         </label>
         <select
@@ -82,14 +76,14 @@ export function SettingsForm({ initialData, onSubmit }: SettingsFormProps) {
           {...register("theme")}
           aria-describedby={errors.theme ? "theme-error" : undefined}
           aria-invalid={errors.theme ? "true" : "false"}
-          className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100"
+          className={INPUT_CLASS}
         >
           <option value="light">Light</option>
           <option value="dark">Dark</option>
           <option value="system">System</option>
         </select>
         {errors.theme && (
-          <p id="theme-error" role="alert" className="mt-1 text-sm text-red-600">
+          <p id="theme-error" role="alert" className="text-sm text-danger">
             {errors.theme.message}
           </p>
         )}
@@ -100,23 +94,47 @@ export function SettingsForm({ initialData, onSubmit }: SettingsFormProps) {
           id="notifications"
           type="checkbox"
           {...register("notifications")}
-          className="h-4 w-4 rounded border-zinc-300 text-blue-600 focus:ring-blue-500"
+          className="h-4.5 w-4.5 shrink-0 rounded border-hairline2 bg-surface2 text-accent accent-accent"
         />
         <label
           htmlFor="notifications"
-          className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+          className="text-sm font-medium text-ink"
         >
           Enable email notifications
         </label>
       </div>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {isSubmitting ? "Saving..." : "Save settings"}
-      </button>
+      <div className="pt-1">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="group flex w-full items-center justify-between gap-3 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-accent-ink transition-all duration-200 hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {isSubmitting ? "Saving..." : "Save settings"}
+          <span
+            aria-hidden="true"
+            className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent-ink/15 transition-transform duration-300 group-hover:translate-x-0.5"
+          >
+            <SaveGlyph />
+          </span>
+        </button>
+      </div>
     </form>
+  );
+}
+
+function SaveGlyph() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      className="h-3.5 w-3.5"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    >
+      <path d="M3 2.5h8.5L13 4.5v9H3z" strokeLinejoin="round" />
+      <path d="M5 2.5V6h5V2.5M5 13.5V9h6v4.5" strokeLinejoin="round" />
+    </svg>
   );
 }

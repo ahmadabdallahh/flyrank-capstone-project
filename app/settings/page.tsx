@@ -14,31 +14,55 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-900">
-      <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 lg:px-8">
-        <header className="mb-8">
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-            Settings
-          </h1>
-          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-            Manage your account preferences and notification settings.
-          </p>
-        </header>
+    <div className="mx-auto w-full max-w-2xl flex-1 px-5 py-12 sm:px-6">
+      <header className="anim-rise mb-8">
+        <p className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-accent">
+          Preferences
+        </p>
+        <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink">
+          Settings
+        </h1>
+        <p className="mt-2 text-sm leading-6 text-muted">
+          Manage your account preferences and notification settings.
+        </p>
+      </header>
 
-        <div className="rounded-lg border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-700 dark:bg-zinc-800">
-          <SettingsForm onSubmit={handleSubmit} />
+      <section
+        aria-label="Settings"
+        className="anim-rise [animation-delay:120ms]"
+      >
+        <div className="rounded-[1.75rem] bg-canvas p-1.5 sm:rounded-[2rem]">
+          <div className="rounded-[1.375rem] border border-hairline bg-surface p-5 shadow-sm sm:rounded-[1.625rem] sm:p-7">
+            <SettingsForm onSubmit={handleSubmit} />
 
-          {saved && (
-            <div
-              role="status"
-              aria-live="polite"
-              className="mt-4 rounded-md bg-green-50 p-3 text-sm text-green-700 dark:bg-green-900/30 dark:text-green-400"
-            >
-              Settings saved successfully.
-            </div>
-          )}
+            {saved && (
+              <div
+                role="status"
+                aria-live="polite"
+                className="mt-5 flex items-center gap-2 rounded-xl border border-pass-soft bg-pass-soft px-4 py-3 text-sm text-pass"
+              >
+                <CheckIcon />
+                Settings saved successfully.
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      className="h-4 w-4"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+    >
+      <path d="M2.5 8.5l3.5 3.5 7.5-7.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }

@@ -39,57 +39,152 @@ export default function HomePage() {
   }
 
   return (
-    <div className="flex flex-1 flex-col bg-zinc-50 font-sans dark:bg-black">
-      <main className="mx-auto w-full max-w-4xl flex-1 px-4 py-12 sm:px-6">
-        <header className="mb-10 grid gap-2">
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-            AI Smart Code &amp; Resume Reviewer
-          </h1>
-          <p className="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            Upload a resume PDF, paste a GitHub link, or drop in a code snippet.
-            The AI returns a structured, actionable review — ATS score, strengths,
-            weaknesses, and copy-paste-ready fixes.
-          </p>
-        </header>
-
+    <div className="flex flex-1 flex-col">
+      <main className="mx-auto w-full max-w-5xl flex-1 px-5 pb-8 pt-10 sm:px-6 sm:pt-12">
         {!result ? (
-          <section className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <AnalyzeForm onSubmit={handleAnalyze} loading={loading} />
-            {error && (
-              <p role="alert" className="mt-4 text-sm text-red-600">
-                {error}
+          <div className="grid gap-12 lg:grid-cols-[1.02fr_1fr] lg:items-start">
+            <section aria-labelledby="hero-title" className="anim-rise lg:sticky lg:top-28">
+              <p className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-accent">
+                <span
+                  className="h-1.5 w-1.5 rounded-full bg-accent"
+                  aria-hidden="true"
+                />
+                AI reviewer
               </p>
-            )}
-          </section>
+
+              <h1
+                id="hero-title"
+                className="mt-6 max-w-md text-balance font-display text-4xl leading-[1.05] font-semibold tracking-tight text-ink sm:text-5xl"
+              >
+                The review job applications never get
+              </h1>
+
+              <p className="mt-5 max-w-md text-base leading-7 text-muted">
+                Upload a resume PDF, link a GitHub repo, or paste a snippet. Get
+                a structured scorecard — ATS fit, tech-stack impact, code
+                quality, structure — with fixes you can apply today.
+              </p>
+
+              <ol className="mt-10 grid gap-5">
+                <li className="flex gap-4">
+                  <span
+                    className="font-mono text-sm font-semibold text-faint"
+                    aria-hidden="true"
+                  >
+                    01
+                  </span>
+                  <div>
+                    <h2 className="text-sm font-semibold text-ink">
+                      Drop in your material
+                    </h2>
+                    <p className="mt-1 text-sm leading-6 text-muted">
+                      A resume PDF, a GitHub link, or a code snippet — PDFs are
+                      parsed in your browser and never leave your device.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <span
+                    className="font-mono text-sm font-semibold text-faint"
+                    aria-hidden="true"
+                  >
+                    02
+                  </span>
+                  <div>
+                    <h2 className="text-sm font-semibold text-ink">
+                      Get a structured scorecard
+                    </h2>
+                    <p className="mt-1 text-sm leading-6 text-muted">
+                      An LLM grades every section against a strict schema — one
+                      overall score plus four category scores.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <span
+                    className="font-mono text-sm font-semibold text-faint"
+                    aria-hidden="true"
+                  >
+                    03
+                  </span>
+                  <div>
+                    <h2 className="text-sm font-semibold text-ink">
+                      Apply the fixes, re-submit
+                    </h2>
+                    <p className="mt-1 text-sm leading-6 text-muted">
+                      Actionable fixes come with suggested copy or code — copy
+                      them straight into your application.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </section>
+
+            <section
+              aria-label="Start a review"
+              className="anim-rise [animation-delay:120ms]"
+            >
+              <div className="rounded-[1.75rem] bg-canvas p-1.5 sm:rounded-[2rem]">
+                <div className="rounded-[1.375rem] border border-hairline bg-surface p-5 shadow-sm sm:rounded-[1.625rem] sm:p-7">
+                  <div className="mb-6 flex items-baseline justify-between">
+                    <h2 className="font-display text-xl font-semibold text-ink">
+                      Start a review
+                    </h2>
+                    <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
+                      local, private
+                    </span>
+                  </div>
+
+                  <AnalyzeForm onSubmit={handleAnalyze} loading={loading} />
+                  {error && (
+                    <p role="alert" className="mt-4 text-sm text-danger">
+                      {error}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </section>
+          </div>
         ) : (
-          <section className="grid gap-8">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
-                Your review
-              </h2>
-              <button
-                type="button"
-                onClick={handleReset}
-                className="rounded-md border border-zinc-300 px-3 py-1.5 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
-              >
-                Review another
-              </button>
+          <section aria-label="Your review" className="anim-rise">
+            <div className="grid gap-8">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-accent">
+                    Scorecard
+                  </p>
+                  <h1 className="mt-2 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                    Your review
+                  </h1>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="rounded-full border border-hairline px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-hairline2 hover:text-ink active:scale-[0.98]"
+                >
+                  Review another
+                </button>
+              </div>
+
+              {result.usedFallback && (
+                <div
+                  role="status"
+                  className="rounded-xl border border-warn-soft bg-warn-soft px-4 py-3 text-sm text-warn"
+                >
+                  {result.message}
+                </div>
+              )}
+
+              <div className="rounded-[1.75rem] bg-canvas p-1.5 sm:rounded-[2rem]">
+                <div className="grid gap-10 rounded-[1.375rem] border border-hairline bg-surface p-5 shadow-sm sm:rounded-[1.625rem] sm:p-8 lg:grid-cols-[minmax(0,280px)_1fr]">
+                  <ScoreGauge
+                    score={result.review.overallScore}
+                    categoryScores={result.review.categoryScores}
+                  />
+                  <ReviewDashboard review={result.review} />
+                </div>
+              </div>
             </div>
-
-            {result.usedFallback && (
-              <p
-                role="status"
-                className="rounded-md bg-amber-50 p-3 text-sm text-amber-800 dark:bg-amber-900/30 dark:text-amber-200"
-              >
-                {result.message}
-              </p>
-            )}
-
-            <ScoreGauge
-              score={result.review.overallScore}
-              categoryScores={result.review.categoryScores}
-            />
-            <ReviewDashboard review={result.review} />
           </section>
         )}
       </main>
