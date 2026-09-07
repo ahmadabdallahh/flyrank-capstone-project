@@ -53,10 +53,22 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 │       └── settings.ts
 ├── public/                 # Static assets
 ├── AGENTS.md               # Project rules and AI instructions
-├── CLAUDE.md               # AI assistant conventions
+├── CLAUDE.md               # AI assistant conventions (build context / identity kit)
 ├── WORKFLOW.md             # AI workflow comparison analysis
+├── NEXT-CASE.md            # Runbook: how to add the next portfolio case study
+├── TODO.md                 # Tracked reminder: the next named piece + nudge
 └── package.json
 ```
+
+## Case Studies
+
+This repo doubles as a portfolio of applied front-end work. Each case follows a
+three-beat shape (Problem / What you did / What came of it). To add the next
+one, follow [`NEXT-CASE.md`](./NEXT-CASE.md); the next named piece is tracked
+in [`TODO.md`](./TODO.md).
+
+- **Case 1 — AI Workflow Comparison (Settings Form):** See `WORKFLOW.md` and the
+  `round-1-vague` vs `round-2-precise` branches.
 
 ## Available Scripts
 
