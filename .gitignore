@@ -16,6 +16,8 @@ out/
 .env.test.local
 .env.production.local
 
+docs/
+
 # IDE
 .vscode/
 .idea/
